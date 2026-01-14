@@ -1,20 +1,19 @@
 .sidebar {
-    background-color: var(--color-slate-900);
-    border-color: var(--color-slate-800);
-    border-style: solid;
+    background-color: var(--surface-color-background);
+    max-width: var(--sidebar-width);
     min-width: var(--sidebar-width);
-    overflow: clip;
+    overflow: hidden;
     padding-inline: --spacing(4.5);
 
     &.sidebar-left {
-        border-width: 0 var(--border-width) 0 0;
-        box-shadow: inset calc(var(--border-width) * -2) 0 0 calc(var(--border-width) * -1) var(--color-slate-950);
+        border-right: var(--border-width) solid var(--border-color);
+        box-shadow: inset calc(var(--border-width-inner) * -1) 0 0 0 var(--border-color-inner);
         grid-area: sidebar-left;
     }
 
     &.sidebar-right {
-        border-width: 0 0 0 var(--border-width);
-        box-shadow: inset calc(var(--border-width) * 2) 0 0 calc(var(--border-width) * -1) var(--color-slate-950);
+        border-left: var(--border-width) solid var(--border-color);
+        box-shadow: inset calc(var(--border-width-inner) * -1) 0 0 0 var(--border-color-inner);
         grid-area: sidebar-right;
     }
 

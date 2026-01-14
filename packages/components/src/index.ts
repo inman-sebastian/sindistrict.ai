@@ -1,10 +1,12 @@
 "use client";
 
+export * from "./ad";
 export * from "./avatar";
 export * from "./badge";
 export * from "./button";
 export * from "./card";
 export * from "./carousel";
+export * from "./character-card";
 export * from "./container";
 export * from "./empty";
 export * from "./grid";
@@ -21,6 +23,8 @@ export * from "./sidebar-item";
 export * from "./skeleton";
 export * from "./spinner";
 export * from "./static";
+export * from "./sticky";
+export * from "./surface";
 export * from "./tabs";
 export * from "./textarea";
 export * from "./visually-hidden";

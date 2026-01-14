@@ -1,15 +1,14 @@
 .carousel {
     --indicator-size: --spacing(2.5);
-    border-radius: --spacing(2);
-    display: flex;
     place-items: center;
-    position: relative;
     width: 100%;
+
+    & .surface-content {
+        padding: 0;
+    }
 
     & .carousel-slides {
         background-color: var(--color-slate-900);
-        border-radius: --spacing(2);
-        corner-shape: superellipse(2);
         display: grid;
         grid-template-areas: "carousel-slides";
         list-style: none;
@@ -18,10 +17,8 @@
 
         & .carousel-slide {
             background-color: var(--color-slate-900);
-            border-radius: --spacing(2);
-            corner-shape: superellipse(2);
             grid-area: carousel-slides;
-            min-height: 300px;
+            min-height: 400px;
             opacity: 0;
             padding: --spacing(4.5);
             pointer-events: none;

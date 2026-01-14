@@ -1,6 +1,5 @@
-import { createContext, useContext, useEffect, useState, useRef } from "react";
-import { useStickySniff } from "@packages/hooks";
-import { cn } from "@packages/utils";
+import { createContext, useContext, useState } from "react";
+import { Surface } from "../surface";
 import "./tabs.css";
 
 const TabsContext = createContext<{
@@ -37,21 +36,14 @@ export type TabsListProps = {
 }
 
 export function TabsList({orientation = "horizontal", children }: TabsListProps) {
-    const ref = useRef<HTMLDivElement>(null);
-    const { isSticky } = useStickySniff(ref);
-
-    useEffect(() => {
-        console.log(isSticky);
-    }, [isSticky]);
 
     return (
-        <div
-        ref={ref}
+        <Surface
         role="tablist"
-        className={cn("tabs-list", isSticky && "sticky")}
+        className="tabs-list"
         aria-orientation={orientation}>
             {children}
-        </div>
+        </Surface>
     );
 }
 

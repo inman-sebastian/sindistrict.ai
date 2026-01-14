@@ -130,6 +130,16 @@
     }
 }
 
+.rounded {
+    border-radius: var(--border-radius);
+    corner-shape: squircle;
+}
+
+.rounded-inner {
+    border-radius: calc(var(--border-radius) - var(--border-width));
+    corner-shape: squircle;
+}
+
 @each $color in 
 slate, neutral, zinc, red, orange, amber, yellow, lime,
 green, emerald, turquoise, teal, cyan, sky, blue, navy,

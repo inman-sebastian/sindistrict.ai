@@ -1,0 +1,50 @@
+.ad {
+    border-color: var(--color-slate-700);
+    border-radius: --spacing(2);
+    border-style: solid;
+    border-width: var(--border-width);
+    box-shadow: inset 0 0 0 var(--border-width) var(--color-slate-950);
+    corner-shape: superellipse(2);
+    max-width: 100%;
+    overflow: hidden;
+    padding: var(--border-width);
+
+    & > * {
+        border-radius: calc(--spacing(2) - calc(var(--border-width) * 2));
+        corner-shape: superellipse(2);
+        max-height: 100%;
+        max-width: 100%;
+        overflow: hidden;
+
+        & :has(> img) {
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        & img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+    }
+
+    &.ad-leaderboard {
+        aspect-ratio: 728 / 90;
+    }
+
+    &.ad-rectangle {
+        aspect-ratio: 300 / 250;
+    }
+
+    &.ad-skyscraper {
+        aspect-ratio: 160 / 600;
+    }
+
+    &.ad-banner-lg {
+        aspect-ratio: 900 / 250;
+    }
+
+    &.ad-banner-sm {
+        aspect-ratio: 300 / 500;
+    }
+}

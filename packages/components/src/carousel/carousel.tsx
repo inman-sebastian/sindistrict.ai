@@ -3,6 +3,7 @@ import { useId } from "@packages/hooks";
 import { cn } from "@packages/utils";
 import { Icon } from "../icon";
 import { Image } from "../image";
+import { Surface } from "../surface";
 import "./carousel.css";
 
 export type CarouselProps = {
@@ -76,7 +77,7 @@ export function Carousel({ children, ...props }: CarouselProps) {
     }, [autoplay, isAutoplayDisabled, autoplayInterval, handleNext]);
 
     return (
-        <section id={uniqueId} className="carousel" aria-roledescription="carousel">
+        <Surface id={uniqueId} className="carousel" aria-roledescription="carousel">
             <div id={`${uniqueId}-slides`} className="carousel-slides" aria-live={autoplay && !isAutoplayDisabled ? "off" : "polite"}>
                 {childrenArray.map((child, index) => (
                     <CarouselSlide key={index} index={index} {...child.props} className={index === currentIndex ? "active" : ""} aria-label={`${index + 1} of ${totalSlides}`} />
@@ -101,7 +102,7 @@ export function Carousel({ children, ...props }: CarouselProps) {
                     </nav>
                 </div>
             </div>
-        </section>
+        </Surface>
     );
 }
 

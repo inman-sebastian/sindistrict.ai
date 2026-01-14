@@ -1,7 +1,6 @@
 .image {
-    border-radius: inherit;
-    corner-shape: superellipse(2);
-    overflow: clip;
+    max-inline-size: none;
+    overflow: hidden;
     place-content: center;
     position: relative;
 
@@ -16,6 +15,7 @@
         height: 100%;
         object-fit: cover;
         width: 100%;
+        scale: 1;
         z-index: 1;
     }
 

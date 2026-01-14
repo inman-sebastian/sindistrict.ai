@@ -87,7 +87,14 @@
     --radius-3xl: 0.875rem;
     --radius-4xl: 1rem;
 
-    --border-width: 1.5px;
+    --border-color: var(--color-slate-700);
+    --border-color-inner: var(--color-slate-950);
+    --border-width: 1px;
+    --border-width-inner: calc(var(--border-width) * 2);
+    --border-radius-inner: --spacing(4);
+    --border-radius: calc(var(--border-radius-inner) + var(--border-width-inner));
+
+    --surface-color-background: var(--color-slate-900);
 
     --sidebar-width: 300px;
 }

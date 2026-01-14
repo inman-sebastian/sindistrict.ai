@@ -1,0 +1,22 @@
+.surface {
+    background-color: var(--surface-color-background);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius);
+    corner-shape: squircle;
+    display: flex;
+    min-height: fit-content;
+    overflow: hidden;
+    position: relative;
+
+    & .surface-content {
+        border: var(--border-width-inner) solid var(--border-color-inner);
+        border-radius: var(--border-radius-inner);
+        corner-shape: squircle;
+        flex: 1;
+        min-height: fit-content;
+        overflow: hidden;
+        padding: --spacing(4.5);
+        position: relative;
+        width: 100%;
+    }
+}

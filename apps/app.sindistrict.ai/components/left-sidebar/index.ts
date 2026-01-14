@@ -1,2 +1,1 @@
-export * from "./footer";
 export * from "./left-sidebar";

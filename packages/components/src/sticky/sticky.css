@@ -1,0 +1,8 @@
+.sticky {
+    display: flex;
+    flex-direction: column;
+    gap: --spacing(4.5);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
