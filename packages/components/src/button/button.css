@@ -1,0 +1,35 @@
+.button {
+    background-color: var(--color-primary);
+    border-radius: --spacing(2);
+    color: var(--color-primary-foreground);
+    corner-shape: superellipse(2);
+    display: inline-grid;
+    overflow: clip;
+    padding-block: --spacing(0.5);
+    text-align: center;
+    user-select: none;
+    vertical-align: middle;
+
+    &:not(.is-link) {
+        text-decoration: none;
+    }
+
+    & .button-inner {
+        align-items: center;
+        display: flex;
+        font-size: --spacing(3.5);
+        font-weight: 600;
+        gap: --spacing(2.5);
+        justify-content: start;
+        line-height: 1;
+        min-height: --spacing(9);
+        padding: --spacing(2);
+        transition-duration: inherit;
+        transition-property: inherit;
+        transition-timing-function: inherit;
+
+        & .icon {
+            color: var(--color-red-100);
+        }
+    }
+}

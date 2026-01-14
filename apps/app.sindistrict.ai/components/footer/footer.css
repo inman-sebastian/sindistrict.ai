@@ -1,0 +1,8 @@
+.footer {
+    background-color: var(--color-slate-900);
+    outline: var(--border-width) solid var(--color-slate-800);
+    border-top: var(--border-width) solid var(--color-slate-950);
+    margin-block: auto --spacing(-4.5);
+    margin-inline: --spacing(-4.5);
+    padding: --spacing(4.5);
+}

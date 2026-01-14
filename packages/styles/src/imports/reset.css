@@ -1,0 +1,88 @@
+*,
+*::before, 
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:where(html) {
+    color-scheme: light dark;
+    hanging-punctuation: first allow-end last;
+    interpolate-size: allow-keywords;
+    scroll-behavior: smooth;
+    text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+}
+
+:where(html.translated-rtl) {
+    direction: rtl;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :where(html) {
+        scroll-behavior: auto;
+    }
+}
+
+:where(body) {
+    font-family: var(--font-family-sans);
+    max-block-size: 100dvh;
+    min-block-size: 100dvh;
+    max-inline-size: 100dvw;
+    min-inline-size: 100dvw;
+    overflow: hidden;
+}
+
+:where(main) {
+    display: flex;
+    flex-direction: column;
+    grid-area: main;
+    overflow: hidden;
+}
+
+:where(canvas, img, picture, svg, video) {
+    block-size: auto;
+    border: none;
+    display: block;
+    max-inline-size: 100%;
+    user-select: none;
+}
+
+:where(button, input, progress, select, textarea) {
+    appearance: none;
+    background: transparent;
+    border: none;
+    color: inherit;
+    font: inherit;
+    hanging-punctuation: none;
+    line-height: inherit;
+    text-align: start;
+    touch-action: manipulation;
+}
+
+:where(button) {
+    cursor: pointer;
+    &:active {
+        user-select: none;
+    }
+}
+
+:where(textarea) {
+    resize: vertical;
+}
+
+:where(textarea:not([rows])) {
+    field-sizing: content;
+}
+
+:where(fieldset, iframe) {
+    border: none;
+}
+
+:where(p, li, h1, h2, h3, h4, h5, h6) {
+    overflow-wrap: break-word;
+    text-wrap: pretty;
+}

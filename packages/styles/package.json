@@ -1,0 +1,17 @@
+{
+    "name": "@packages/styles",
+    "type": "module",
+    "files": [
+        "dist"
+    ],
+    "exports": {
+        ".": "./dist/styles.css"
+    },
+    "scripts": {
+        "dev": "postcss src/styles.css -o dist/styles.css --watch",
+        "build": "postcss src/styles.css -o dist/styles.css"
+    },
+    "devDependencies": {
+        "@packages/components": "workspace:*"
+    }
+}

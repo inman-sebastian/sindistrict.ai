@@ -1,0 +1,38 @@
+.radial-progress-bar {
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    position: relative;
+    height: 16px;
+    width: 16px;
+
+    & .radial-progress-bar-svg {
+        overflow: visible;
+        height: 100%;
+        width: 100%;
+    }
+
+    & .radial-progress-bar-svg-bg,
+    & .radial-progress-bar-svg-fg {
+        fill: none;
+        stroke-linecap: round;
+        stroke-width: 16px;
+        /* vector-effect: non-scaling-stroke; */
+    }
+
+    & .radial-progress-bar-svg-bg {
+        stroke: currentColor;
+        opacity: 0.2;
+    }
+
+    & .radial-progress-bar-svg-fg {
+        --p: clamp(0, var(--progress), 100);
+        stroke: currentColor;
+        stroke-dasharray: var(--p) calc(100 - var(--p));
+        stroke-dashoffset: 0;
+        transform: rotate(-90deg);
+        transform-origin: center center;
+        transition: stroke-dashoffset 0.5s ease-out;
+    }
+}

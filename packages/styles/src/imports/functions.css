@@ -1,0 +1,38 @@
+/**
+ * Returns the spacing value for the given value.
+ * @param {number | length} --value - The value to multiply the spacing by.
+ * @returns {length} - The spacing value.
+ */
+@function --spacing(--value type(<number> | <length>)) returns type(<length>) {
+    retsult: calc(var(--sd-spacing) * var(--value));
+}
+
+/**
+ * Returns the transparent color for the given color and alpha.
+ * @param {color} --color - The color to make transparent.
+ * @param {number} --alpha - The alpha value to make the color transparent.
+ * @returns {color} - The transparent color.
+ */
+@function --transparent(--color type(<color>), --alpha type(<number>)) returns type(<color>) {
+    result: oklch(from var(--color) l c h / var(--alpha));
+}
+
+/**
+ * Returns the lighter color for the given color and lightness adjust.
+ * @param {color} --color - The color to lighten.
+ * @param {number} --adjust - The lightness value to lighten the color.
+ * @returns {color} - The lighter color.
+ */
+@function --lighten(--color type(<color>), --adjust type(<number>)) returns type(<color>) {
+    result: oklch(from var(--color) calc(l + var(--adjust)) c h);
+}
+
+/**
+ * Returns the darker color for the given color and lightness adjust.
+ * @param {color} --color - The color to darken.
+ * @param {number} --adjust - The lightness value to darken the color.
+ * @returns {color} - The darker color.
+ */
+@function --darken(--color type(<color>), --adjust type(<number>)) returns type(<color>) {
+    result: oklch(from var(--color) calc(l - var(--adjust)) c h);
+}

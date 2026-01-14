@@ -1,0 +1,110 @@
+.card {
+    border-color: var(--color-slate-700);
+    border-radius: --spacing(2);
+    border-style: solid;
+    border-width: var(--border-width);
+    box-shadow: inset 0 0 0 var(--border-width) var(--color-slate-950);
+    corner-shape: superellipse(2);
+    overflow: hidden;
+    padding-block: --spacing(4.5);
+    padding-inline: --spacing(4.5);
+    position: relative;
+
+    & .card-thumbnail {
+        aspect-ratio: 250 / 390;
+        border-color: var(--color-slate-950);
+        border-radius: calc(--spacing(2) - 2px);
+        border-style: solid;
+        border-width: var(--border-width);
+        corner-shape: superellipse(2);
+        margin-inline: --spacing(-4.5);
+        margin-block: --spacing(-4.5);
+        overflow: hidden;
+        padding: var(--border-width);
+        position: relative;
+        z-index: 0;
+
+        & .image {
+            position: absolute;
+            inset: 0;
+            scale: 1;
+            transition: scale 0.15s ease-out;
+        }
+    }
+
+    & .card-body {
+        display: flex;
+        flex-direction: column;
+        gap: --spacing(2);
+    }
+
+    & .card-character {
+        background-image: linear-gradient(to bottom, 
+        rgba(from var(--color-slate-900) r g b / 0) 25%, 
+        var(--color-slate-900));
+        border-bottom-left-radius: calc(--spacing(2) - calc(var(--border-width) * 2));
+        border-bottom-right-radius: calc(--spacing(2) - calc(var(--border-width) * 2));
+        border: solid var(--border-width) var(--color-slate-950);
+        border-top: none;
+        display: flex;
+        flex-direction: column;
+        inset: 0;
+        justify-content: end;
+        padding: --spacing(4.5);
+        position: absolute;
+        z-index: 1;
+
+        & .card-character-badges {
+            display: flex;
+            flex-direction: row;
+            gap: --spacing(2);
+            justify-content: start;
+            position: absolute;
+            top: --spacing(4.5);
+            left: --spacing(4.5);
+        }
+
+        & .card-character-info {
+            display: flex;
+            flex: 1 0 0;
+            flex-direction: column;
+            gap: --spacing(2);
+            justify-content: end;
+            text-shadow: 0 0 8px rgba(from var(--color-slate-900) r g b / 0.5);
+            user-select: none;
+        }
+
+        & p {
+            color: var(--color-slate-100);
+            font-size: --spacing(3.5);
+            line-height: 1.25;
+            margin-top: --spacing(2);
+        }
+
+        & .card-character-action {
+            display: flex;
+            flex: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: flex 0.15s ease-out, opacity 0.15s ease-out;
+            width: 100%;
+
+            & .button {
+                flex: 1;
+                justify-content: center;
+                margin-top: --spacing(4.5);
+            }
+        }
+    }
+
+    &:hover,
+    &:focus-within {
+        & .card-thumbnail .image {
+            scale: 1.1;
+        }
+        & .card-character-action {
+            flex: 0 0 auto;
+            opacity: 1;
+        }
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "name": "@packages/utils",
+    "type": "module",
+    "files": [
+        "dist"
+    ],
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "scripts": {
+        "dev": "tsup src/index.ts --watch --format esm --dts",
+        "build": "tsup src/index.ts --format esm --dts"
+    },
+    "peerDependencies": {
+        "react": "^19.2.3",
+        "react-dom": "^19.2.3"
+    },
+    "dependencies": {
+        "clsx": "^2.1.1",
+        "tailwind-merge": "^3.4.0"
+    },
+    "devDependencies": {
+        "@packages/config": "workspace:*",
+        "@types/node": "^25.0.3",
+        "@types/react": "^19.2.7",
+        "@types/react-dom": "^19.2.3",
+        "typescript": "^5.9.3"
+    }
+}

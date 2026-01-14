@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+/*!
+ * ----------------------------------------------------------------------------
+ * SinDistrict CSS
+ * Version: 2.0.2
+ * https://www.sindistrict.ai/styles
+ * Copyright (c) 2025, Sebastian Inman
+ * Licensed under MIT (https://www.sindistrict.ai/license)
+ * ----------------------------------------------------------------------------
+ * The above notice must be included in its entirety when this file is used.
+ */
+
+@layer theme, base, components, utilities;
+
+@import "./imports/theme.css" layer(theme);
+@import "./imports/functions.css" layer(theme);
+@import "./imports/reset.css" layer(base);
+@import "./imports/animations.css" layer(base);
+@import "./imports/utilities.css" layer(utilities);
+@import "../node_modules/@packages/components/dist/index.css" layer(components);

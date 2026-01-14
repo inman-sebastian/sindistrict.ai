@@ -1,0 +1,45 @@
+{
+    "name": "@services/clerk",
+    "type": "module",
+    "scripts": {
+        "dev": "tsc --watch",
+        "build": "tsc"
+    },
+    "files": [
+        "dist"
+    ],
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        },
+        "./proxy": {
+            "import": "./dist/proxy.js",
+            "types": "./dist/proxy.d.ts"
+        },
+        "./server": {
+            "import": "./dist/server.js",
+            "types": "./dist/server.d.ts"
+        },
+        "./themes": {
+            "import": "./dist/themes.js",
+            "types": "./dist/themes.d.ts"
+        }
+    },
+    "peerDependencies": {
+        "next": "^16.1.1"
+    },
+    "dependencies": {
+        "@clerk/clerk-react": "^5.12.0",
+        "@clerk/nextjs": "^6.36.6",
+        "@clerk/themes": "^2.4.47"
+    },
+    "devDependencies": {
+        "@packages/config": "workspace:*",
+        "@types/node": "^25.0.3",
+        "typescript": "^5.9.3"
+    }
+}

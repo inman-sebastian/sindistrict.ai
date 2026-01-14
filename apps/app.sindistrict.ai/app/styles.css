@@ -1,0 +1,8 @@
+:where(body) {
+    display: grid;
+    grid-template-areas:
+        "header header header"
+        "sidebar-left main sidebar-right";
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+}

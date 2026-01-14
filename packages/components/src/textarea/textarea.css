@@ -1,0 +1,15 @@
+.textarea {
+    background-color: var(--color-slate-800);
+    border-color: var(--color-slate-700);
+    border-radius: --spacing(0.75);
+    border-style: solid;
+    border-width: 1px;
+    padding: --spacing(2);
+    resize: vertical;
+    width: 100%;
+
+    &:focus {
+        border-color: var(--color-slate-500);
+        outline: none;
+    }
+}

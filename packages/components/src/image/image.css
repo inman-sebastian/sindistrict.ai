@@ -1,0 +1,27 @@
+.image {
+    border-radius: inherit;
+    corner-shape: superellipse(2);
+    overflow: clip;
+    place-content: center;
+    position: relative;
+
+    & img,
+    & .skeleton {
+        grid-area: image;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    & img {
+        display: block;
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+        z-index: 1;
+    }
+
+    &[data-loading="true"] {
+        & img {
+            animation: fade-in 0.3s ease-in-out;
+        }
+    }
+}

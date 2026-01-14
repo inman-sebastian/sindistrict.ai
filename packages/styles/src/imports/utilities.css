@@ -1,0 +1,157 @@
+.truncate {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.truncate-multiline {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.block {
+    display: block;
+}
+
+.inline {
+    display: inline;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-nowrap {
+    flex-wrap: nowrap;
+}
+
+.flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.grid {
+    display: grid;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.inline-flex {
+    display: inline-flex;
+}
+
+.inline-grid {
+    display: inline-grid;
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.sticky {
+    position: sticky;
+}
+
+.mx-auto {
+    margin-inline: auto;
+}
+
+@for $i from 0 to 12 {
+    .m-$i {
+        margin-inline: --spacing($i);
+        margin-block: --spacing($i);
+    }
+    .mx-$i {
+        margin-inline: --spacing($i);
+    }
+    .my-$i {
+        margin-block: --spacing($i);
+    }
+    .p-$i {
+        padding-inline: --spacing($i);
+        padding-block: --spacing($i);
+    }
+    .px-$i {
+        padding-inline: --spacing($i);
+    }
+    .py-$i {
+        padding-block: --spacing($i);
+    }
+    .order-$i {
+        order: $i;
+    }
+    .order-first {
+        order: -1;
+    }
+    .order-last {
+        order: 9999;
+    }
+    .order-none {
+        order: 0;
+    }
+}
+
+@each $opacity in 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100 {
+    .opacity-$opacity {
+        opacity: $opacity%;
+    }
+}
+
+@each $radius in xs, sm, md, lg, xl, 2xl, 3xl, 4xl {
+    .rounded-$radius {
+        border-radius: var(--radius-$radius);
+    }
+}
+
+@each $color in 
+slate, neutral, zinc, red, orange, amber, yellow, lime,
+green, emerald, turquoise, teal, cyan, sky, blue, navy,
+indigo, violet, purple, fuchsia, pink {
+.bg-$(color) {
+    background-color: var(--color-$(color));
+}
+.text-$(color) {
+    color: var(--color-$(color));
+}
+.border-$(color) {
+    border-color: var(--color-$(color));
+}
+@each $shade in 100, 200, 300, 400, 500, 600, 700, 800, 900 {
+.bg-$(color)-$(shade) {
+    background-color: var(--color-$(color)-$(shade));
+}
+.text-$(color)-$(shade) {
+    color: var(--color-$(color)-$(shade));
+}
+.border-$(color)-$(shade) {
+    border-color: var(--color-$(color)-$(shade));
+}
+}
+}

@@ -1,0 +1,60 @@
+.scroll-area {
+    display: flex;
+    flex: 1;
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+
+    &::-webkit-scrollbar {
+        width: --spacing(4.5);
+    }
+    
+    &::-webkit-scrollbar-track {
+        background-color: var(--color-slate-900);
+        outline: var(--border-width) solid var(--color-slate-800);
+        outline-offset: var(--border-width);
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--color-slate-700);
+        border-radius: 999px;
+        border: --spacing(1.5) solid var(--color-slate-900);
+        transition: background-color 0.5s ease-out;
+    }
+
+    & .scroll-area-content {
+        display: flex;
+        flex: 1;
+        gap: --spacing(4.5);
+        padding: --spacing(4.5);
+    }
+
+    &.scroll-area-horizontal {
+        max-width: 100%;
+        overflow-x: scroll;
+        overflow-y: hidden;
+
+        &::-webkit-scrollbar-thumb {
+            cursor: col-resize;
+        }
+    }
+
+    &.scroll-area-vertical {
+        max-height: 100%;
+        overflow-x: hidden;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar-thumb {
+            cursor: row-resize;
+        }
+
+        & .scroll-area-content {
+            flex-direction: column;
+            margin-right: calc(var(--border-width) * 2);
+        }
+    }
+
+    &.scroll-area-both {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}

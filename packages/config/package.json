@@ -1,0 +1,14 @@
+{
+    "name": "@packages/config",
+    "type": "module",
+    "files": [
+        "tsconfig.base.json",
+        "tsconfig.next.json",
+        "tsconfig.react.json"
+    ],
+    "exports": {
+        "./tsconfig.base.json": "./tsconfig.base.json",
+        "./tsconfig.next.json": "./tsconfig.next.json",
+        "./tsconfig.react.json": "./tsconfig.react.json"
+    }
+}

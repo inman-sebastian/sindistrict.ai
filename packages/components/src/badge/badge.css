@@ -1,0 +1,22 @@
+.badge {
+    align-items: center;
+    background-color: var(--color-slate-800);
+    backdrop-filter: blur(4px);
+    border-radius: --spacing(2);
+    color: var(--color-slate-100);
+    corner-shape: superellipse(2);
+    /* outline-color: var(--color-slate-700);
+    outline-style: solid;
+    outline-width: 1px; */
+    display: inline-flex;
+    font-size: --spacing(3);
+    font-weight: 600;
+    gap: --spacing(1.5);
+    height: max-content;
+    line-height: --spacing(5);
+    padding-block: --spacing(0.75);
+    padding-inline: --spacing(2);
+    user-select: none;
+    white-space: nowrap;
+    width: max-content;
+}

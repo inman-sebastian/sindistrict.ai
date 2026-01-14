@@ -1,0 +1,26 @@
+.container {
+    width: 100%;
+    max-width: 100%;
+
+    &:not(.container-fluid) {
+        @media (--breakpoint-sm) {
+            max-width: var(--container-sm);
+        }
+    
+        @media (--breakpoint-md) {
+            max-width: var(--container-md);
+        }
+    
+        @media (--breakpoint-lg) {
+            max-width: var(--container-lg);
+        }
+    
+        @media (--breakpoint-xl) {
+            max-width: var(--container-xl);
+        }
+    
+        @media (--breakpoint-2xl) {
+            max-width: var(--container-2xl);
+        }
+    }
+}

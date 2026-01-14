@@ -1,0 +1,120 @@
+.carousel {
+    --indicator-size: --spacing(2.5);
+    border-radius: --spacing(2);
+    display: flex;
+    place-items: center;
+    position: relative;
+    width: 100%;
+
+    & .carousel-slides {
+        background-color: var(--color-slate-900);
+        border-radius: --spacing(2);
+        corner-shape: superellipse(2);
+        display: grid;
+        grid-template-areas: "carousel-slides";
+        list-style: none;
+        overflow: hidden;
+        width: 100%;
+
+        & .carousel-slide {
+            background-color: var(--color-slate-900);
+            border-radius: --spacing(2);
+            corner-shape: superellipse(2);
+            grid-area: carousel-slides;
+            min-height: 300px;
+            opacity: 0;
+            padding: --spacing(4.5);
+            pointer-events: none;
+            position: relative;
+            scroll-snap-align: start;
+            transition: opacity 0.3s ease-in-out;
+
+            &.active {
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            & .carousel-slide-content {
+                position: relative;
+                z-index: 1;
+            }
+
+            & .carousel-slide-background-image {
+                inset: 0;
+                position: absolute;
+                z-index: 0;
+            }
+        }
+    }
+
+    & .carousel-controls {
+        display: grid;
+        grid-template-areas: "carousel-controls-prev carousel-controls-next"
+        "carousel-indicators carousel-indicators";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr auto;
+        inset: 0;
+        justify-content: space-between;
+        padding-inline: --spacing(4.5);
+        pointer-events: none;
+        position: absolute;
+        width: 100%;
+        z-index: 2;
+
+        & .carousel-control {
+            display: grid;
+            place-items: center;
+
+            &.carousel-control-prev {
+                grid-area: carousel-controls-prev;
+                justify-self: start;
+            }
+    
+            &.carousel-control-next {
+                grid-area: carousel-controls-next;
+                justify-self: end;
+            }
+
+            &.carousel-control-indicators {
+                grid-area: carousel-indicators;
+                justify-self: center;
+
+                & .carousel-indicators {
+                    align-items: center;
+                    background-color: rgba(from var(--color-slate-900) r g b / 0.8);
+                    backdrop-filter: blur(10px);
+                    border-radius: 90px;
+                    bottom: 0;
+                    display: flex;
+                    margin-bottom: --spacing(4.5);
+                    padding: --spacing(2);
+                    position: absolute;
+
+                    & .carousel-indicator {
+                        border-radius: 50%;
+                        color: rgba(from var(--color-slate-100) r g b / 0.25);
+                        padding: --spacing(1.25);
+
+                        &::before {
+                            background-color: currentColor;
+                            border-radius: 50%;
+                            content: "";
+                            display: block;
+                            height: var(--indicator-size);
+                            width: var(--indicator-size);
+                            transition: color 0.3s ease-in-out;
+                        }
+
+                        &.active::before {
+                            color: var(--color-slate-100);
+                        }
+                    }
+                }
+            }
+        }
+
+        & button {
+            pointer-events: all;
+        }
+    }
+}

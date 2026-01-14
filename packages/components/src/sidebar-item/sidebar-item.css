@@ -1,0 +1,92 @@
+.sidebar-item {
+    padding-block: --spacing(0.5);
+    user-select: none;
+
+    &:is(details) {
+        appearance: none;
+
+        & summary {
+            &::before {
+                content: "";
+                display: none;
+            }
+
+            & .sidebar-item-indicator {
+                height: --spacing(4);
+                width: --spacing(4);
+                margin-left: --spacing(3);
+                flex-shrink: 0;
+                stroke-width: 2.5px;
+            }
+        }
+
+        &[open] summary .sidebar-item-indicator {
+            scale: -1;
+        }
+    }
+
+    & .button {
+        width: 100%;
+    }
+
+    & .sidebar-item-content {
+        align-items: center;
+        border-radius: --spacing(2);
+        corner-shape: superellipse(2);
+        cursor: pointer;
+        display: flex;
+        font-style: normal;
+        min-height: --spacing(9);
+        padding-block: --spacing(2);
+        padding-inline: --spacing(2.5);
+        text-decoration: none;
+        width: 100%;
+
+        & .avatar {
+            --avatar-size: --spacing(8);
+        }
+
+        & .icon {
+            color: var(--color-slate-400);
+        }
+
+        &:has(.avatar) .sidebar-item-text,
+        &:has(.icon) .sidebar-item-text {
+            margin-left: --spacing(2.5);
+        }
+
+        &:not(.active):hover,
+        &:not(.active):focus {
+            background-color: var(--color-slate-800);
+        }
+
+        &.active {
+            background-color: var(--color-slate-800);
+        }
+    }
+
+    & .sidebar-item-text {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: --spacing(1);
+        line-height: 1;
+
+        & .sidebar-item-title {
+            color: var(--color-slate-100);
+            font-size: --spacing(3.5);
+            font-weight: 600;
+        }
+
+        & .sidebar-item-subtitle {
+            color: var(--color-slate-400);
+            font-size: --spacing(2.75);
+            font-weight: 500;
+        }
+    }
+
+    & .sidebar-item-children {
+        list-style: none;
+        padding-block: --spacing(0.5);
+    }
+}

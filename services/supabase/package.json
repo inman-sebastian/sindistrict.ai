@@ -1,0 +1,46 @@
+{
+    "name": "@services/supabase",
+    "type": "module",
+    "scripts": {
+        "dev": "tsc --watch",
+        "build": "tsc"
+    },
+    "files": [
+        "dist"
+    ],
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./client": {
+            "import": "./dist/client.js",
+            "types": "./dist/client.d.ts"
+        },
+        "./proxy": {
+            "import": "./dist/proxy.js",
+            "types": "./dist/proxy.d.ts"
+        },
+        "./server": {
+            "import": "./dist/server.js",
+            "types": "./dist/server.d.ts"
+        }
+    },
+    "peerDependencies": {
+        "next": "^16.1.1"
+    },
+    "dependencies": {
+        "@services/clerk": "workspace:*",
+        "@supabase/ssr": "^0.8.0",
+        "@supabase/supabase-js": "^2.90.0",
+        "dotenv": "^17.2.3",
+        "drizzle-orm": "^0.45.1",
+        "drizzle-zod": "^0.8.3",
+        "postgres": "^3.4.8",
+        "zod": "^4.3.5"
+    },
+    "devDependencies": {
+        "@packages/config": "workspace:*",
+        "@types/node": "^25.0.3",
+        "typescript": "^5.9.3"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "name": "@services/runpod",
+    "type": "module",
+    "scripts": {
+        "build": "tsc"
+    },
+    "dependencies": {
+        "runpod-sdk": "^1.1.2"
+    },
+    "devDependencies": {
+        "@packages/config": "workspace:*",
+        "@types/node": "^25.0.3",
+        "typescript": "^5.9.3"
+    }
+}

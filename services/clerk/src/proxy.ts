@@ -1,0 +1,1 @@
+export { clerkMiddleware as clerkProxy } from "@clerk/nextjs/server";

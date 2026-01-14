@@ -1,0 +1,6 @@
+.logo {
+    color: var(--color-slate-100);
+    display: block;
+    flex-shrink: 0;
+    height: --spacing(7);
+}

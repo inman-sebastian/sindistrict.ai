@@ -1,0 +1,22 @@
+{
+    "name": "@packages/schema",
+    "type": "module",
+    "files": [
+        "dist"
+    ],
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "scripts": {
+        "dev": "tsup src/index.ts --watch --format esm --dts",
+        "build": "tsup src/index.ts --format esm --dts"
+    },
+    "dependencies": {
+        "zod": "^4.3.5"
+    },
+    "devDependencies": {
+        "@packages/config": "workspace:*",
+        "@types/node": "^25.0.3",
+        "typescript": "^5.9.3"
+    }
+}

@@ -1,0 +1,34 @@
+.avatar {
+    --avatar-size: --spacing(5);
+    aspect-ratio: 1 / 1;
+    block-size: var(--avatar-size);
+    inline-size: var(--avatar-size);
+
+    &.avatar-circle {
+        border-radius: 100%;
+    }
+
+    &.avatar-square {
+        border-radius: 0;
+    }
+
+    &.avatar-rounded {
+        border-radius: --spacing(0.75);
+    }
+
+    &.avatar-squircle {
+        corner-shape: squircle;
+    }
+
+    &.avatar-full {
+        height: auto;
+        width: 100%;
+    }
+
+    & img {
+        block-size: 100%;
+        inline-size: 100%;
+        object-fit: cover;
+    }
+
+}
