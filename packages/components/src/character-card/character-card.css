@@ -32,10 +32,17 @@
             justify-content: end;
             text-shadow: 0 0 8px rgba(from var(--color-slate-900) r g b / 0.5);
             user-select: none;
+
+            & .character-card-info-name {
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                gap: --spacing(1);
+            }
         }
 
         & p {
-            color: var(--color-slate-100);
+            color: var(--color-slate-50);
             font-size: --spacing(3.5);
             line-height: 1.25;
             margin-top: --spacing(2);

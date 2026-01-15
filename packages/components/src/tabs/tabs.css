@@ -41,11 +41,11 @@
 
             &[aria-selected="true"] {
                 background-color: var(--color-slate-800);
-                color: var(--color-slate-100);
+                color: var(--color-slate-50);
             }
 
             &:hover {
-                color: var(--color-slate-100);
+                color: var(--color-slate-50);
             }
 
             & .icon {

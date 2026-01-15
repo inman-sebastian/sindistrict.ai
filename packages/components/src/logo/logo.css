@@ -1,5 +1,5 @@
 .logo {
-    color: var(--color-slate-100);
+    color: var(--color-slate-50);
     display: block;
     flex-shrink: 0;
     height: --spacing(7);

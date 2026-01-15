@@ -24,7 +24,7 @@
             pointer-events: none;
             position: relative;
             scroll-snap-align: start;
-            transition: opacity 0.3s ease-in-out;
+            transition: opacity 0.2s ease-out;
 
             &.active {
                 opacity: 1;
@@ -89,7 +89,7 @@
 
                     & .carousel-indicator {
                         border-radius: 50%;
-                        color: rgba(from var(--color-slate-100) r g b / 0.25);
+                        color: rgba(from var(--color-slate-50) r g b / 0.25);
                         padding: --spacing(1.25);
 
                         &::before {
@@ -99,11 +99,11 @@
                             display: block;
                             height: var(--indicator-size);
                             width: var(--indicator-size);
-                            transition: color 0.3s ease-in-out;
+                            transition: color 0.2s ease-out;
                         }
 
                         &.active::before {
-                            color: var(--color-slate-100);
+                            color: var(--color-slate-50);
                         }
                     }
                 }

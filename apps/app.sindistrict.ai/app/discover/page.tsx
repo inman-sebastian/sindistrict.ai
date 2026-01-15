@@ -25,19 +25,19 @@ export default function Home() {
                 <Sticky>
                     <TabsList>
                         <TabsTrigger value="all">
-                            <Icon type="untitledui" name="Grid01" size="lg" inline />
+                            <Icon library="untitledui" name="Grid01" size="lg" inline />
                             Everything
                         </TabsTrigger>
                         <TabsTrigger value="characters">
-                            <Icon type="untitledui" name="User01" size="lg" inline />
+                            <Icon library="untitledui" name="User01" size="lg" inline />
                             Characters
                         </TabsTrigger>
                         <TabsTrigger value="scenarios">
-                            <Icon type="untitledui" name="Clapperboard" size="lg" inline />
+                            <Icon library="untitledui" name="Clapperboard" size="lg" inline />
                             Scenarios
                         </TabsTrigger>
                         <TabsTrigger value="personas">
-                            <Icon type="untitledui" name="FaceWink" size="lg" inline />
+                            <Icon library="untitledui" name="FaceWink" size="lg" inline />
                             Personas
                         </TabsTrigger>
                     </TabsList>

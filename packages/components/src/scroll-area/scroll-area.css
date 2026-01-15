@@ -18,7 +18,7 @@
         background-color: var(--color-slate-700);
         border-radius: 999px;
         border: --spacing(1.5) solid var(--surface-color-background);
-        transition: background-color 0.5s ease-out;
+        transition: background-color 0.2s ease-out;
     }
 
     & .scroll-area-content {

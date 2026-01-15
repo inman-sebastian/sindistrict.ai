@@ -18,6 +18,11 @@ export default defineConfig({
         // Workspace packages (should be externalized, except utils which will be bundled)
         /^@packages\//,
         // Other dependencies that should not be bundled
+        "@fortawesome/fontawesome-svg-core",
+        "@fortawesome/free-brands-svg-icons",
+        "@fortawesome/free-regular-svg-icons",
+        "@fortawesome/free-solid-svg-icons",
+        "@fortawesome/react-fontawesome",
         "@untitledui/icons",
         "lucide-react",
     ],

@@ -1,55 +1,86 @@
 import { icons as LucideIcons } from "lucide-react";
-import * as UntitledUiIcons from "@untitledui/icons";
+import * as UntitledUIIcons from "@untitledui/icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { config } from '@fortawesome/fontawesome-svg-core'
+import * as FontAwesomeSolidIcons from "@fortawesome/free-solid-svg-icons";
+import * as FontAwesomeRegularIcons from "@fortawesome/free-regular-svg-icons";
+import * as FontAwesomeBrandsIcons from "@fortawesome/free-brands-svg-icons";
 import { cn } from "@packages/utils";
-
+import { useMemo } from "react";
 import "./icon.css";
 
-export type LucideIconName = keyof typeof LucideIcons;
-export type UntitledUiIconName = keyof typeof UntitledUiIcons;
+config.autoAddCss = false;
 
 type LucideIconProps = {
-    type: "lucide";
-    name: LucideIconName;
+    library: "lucide";
+    style?: React.CSSProperties;
+    name: keyof typeof LucideIcons;
 };
 
 type UntitledUiIconProps = {
-    type: "untitledui";
-    name: UntitledUiIconName;
+    library: "untitledui";
+    style?: React.CSSProperties;
+    name: keyof typeof UntitledUIIcons;
 };
 
-export type IconProps = (LucideIconProps | UntitledUiIconProps) & {
+type FontAwesomeSolidIconProps = {
+    library: "fontawesome";
+    style?: "solid";
+    name: RemovePrefix<keyof typeof FontAwesomeSolidIcons, "fa">;
+};
+
+type FontAwesomeRegularIconProps = {
+    library: "fontawesome";
+    style?: "regular";
+    name: RemovePrefix<keyof typeof FontAwesomeRegularIcons, "fa">;
+};
+
+type FontAwesomeBrandsIconProps = {
+    library: "fontawesome";
+    style?: "brand";
+    name: RemovePrefix<keyof typeof FontAwesomeBrandsIcons, "fa">;
+};
+
+type FontAwesomeIconProps = FontAwesomeSolidIconProps | FontAwesomeRegularIconProps | FontAwesomeBrandsIconProps;
+
+export type IconProps = (LucideIconProps | UntitledUiIconProps | FontAwesomeIconProps) & {
     inline?: boolean;
     size?: "sm" | "md" | "lg" | "xl";
-    className?: string;
-};
+} & Omit<React.SVGProps<SVGSVGElement>, "style">;
 
-export function Icon({ type, name, size = "md", inline = false, className, ...props }: IconProps) {
-    type DerivedIconComponent = LucideIconProps["type"] extends "lucide" 
-        ? (typeof LucideIcons)[LucideIconName] 
-        : (typeof UntitledUiIcons)[UntitledUiIconName];
+export function Icon({ library, name, inline = false, size = "md", className, ...props }: IconProps) {
+    const classes = useMemo(() => {
+        return cn("icon", `icon-${library}`, `icon-${size}`, inline && "icon-inline", className);
+    }, [inline, size, className]);
 
-    type DerivedIconProps = LucideIconProps["type"] extends "lucide" 
-        ? Omit<React.ComponentProps<(typeof LucideIcons)[LucideIconName]>, "className"> 
-        : Omit<React.ComponentProps<(typeof UntitledUiIcons)[UntitledUiIconName]>, "className">;
-
-    const { ...restProps } = props as DerivedIconProps;
-
-    switch (type) {
-        case "lucide": {
-            const LucideIconComponent = LucideIcons[name] as DerivedIconComponent;
-            return (
-                <span className="icon-wrapper">
-                    <LucideIconComponent className={cn("icon", inline ? "icon-inline" : "", `icon-${size}`, className)} {...restProps} />
-                </span>
-            );
-        }
-        case "untitledui": {
-            const UntitledUiIconComponent = UntitledUiIcons[name] as DerivedIconComponent;
-            return (
-                <span className="icon-wrapper">
-                    <UntitledUiIconComponent className={cn("icon", inline ? "icon-inline" : "", `icon-${size}`, className)} {...restProps} />
-                </span>
-            );
-        }
+    let IconComponent: React.ReactNode | null = null;
+    
+    if (library === "lucide" && !("style" in props)) {
+        const LucideIcon = LucideIcons[name];
+        const { style, ...rest } = props;
+        IconComponent = <LucideIcon className={classes} {...rest} />;
     }
+    if (library === "untitledui" && !("style" in props)) {
+        const UntitledUIIcon = UntitledUIIcons[name];
+        const { style, ...rest } = props;
+        IconComponent = <UntitledUIIcon className={classes} {...rest} />;
+    }
+    if (library === "fontawesome" && "style" in props) {
+        const { style: iconStyle = "regular", ...rest } = props;
+        const faIconName = `fa${name}`;
+
+        const icon = iconStyle === "solid" ? 
+            FontAwesomeSolidIcons[faIconName] : iconStyle === "regular" ? 
+            FontAwesomeRegularIcons[faIconName] : 
+            FontAwesomeBrandsIcons[faIconName];
+        
+        if (!icon) {
+            console.warn(`[FontAwesomeIcon] Could not find icon: ${faIconName} in ${iconStyle} style`);
+            IconComponent = null;
+        }
+        
+        IconComponent = <FontAwesomeIcon icon={icon} className={classes} />;
+    }
+
+    return IconComponent;
 }

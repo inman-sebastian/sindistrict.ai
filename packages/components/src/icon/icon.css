@@ -1,12 +1,11 @@
 .icon-wrapper {
     align-items: center;
     aspect-ratio: 1 / 1;
+    color: currentColor;
     display: inline-flex;
     justify-content: center;
 
     &:not(:has(.icon-inline)) {
-        background-color: var(--color-slate-800);
-        border-radius: --spacing(1);
         height: var(--icon-container-size);
         width: var(--icon-container-size);
     }

@@ -9,6 +9,7 @@
         "baseUrl": ".",
         "rootDir": "./src",
         "outDir": "./dist",
-        "jsx": "react-jsx"
+        "jsx": "react-jsx",
+        "types": ["@packages/types"]
     }
 }

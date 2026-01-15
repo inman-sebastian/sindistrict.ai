@@ -3,7 +3,7 @@
     background-color: var(--color-slate-800);
     backdrop-filter: blur(4px);
     border-radius: --spacing(2);
-    color: var(--color-slate-100);
+    color: var(--color-slate-50);
     corner-shape: superellipse(2);
     /* outline-color: var(--color-slate-700);
     outline-style: solid;

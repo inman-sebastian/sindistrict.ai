@@ -1,6 +1,8 @@
 import { Logo } from "../logo";
-import { useUser, UserButton } from "@services/clerk";
+import { useUser } from "@services/clerk";
 import { useEffect, useRef } from "react";
+import { Button } from "../button";
+import { Icon } from "../icon";
 import "./header.css";
 
 export type HeaderProps = {
@@ -26,7 +28,14 @@ export function Header({ children }: HeaderProps) {
             <div className="header-content">
                 <Logo />
                 {children}
-                <UserButton />
+                <div style={{ display: "flex", gap: "8px" }}>
+                    <Button style="ghost" variant="secondary">
+                        <Icon library="untitledui" name="Bell01" size="lg" inline />
+                    </Button>
+                    <Button style="ghost" variant="secondary">
+                        <Icon library="untitledui" name="CoinsStacked03" size="lg" inline />
+                    </Button>
+                </div>
             </div>
         </header>
     );

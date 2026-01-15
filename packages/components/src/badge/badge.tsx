@@ -9,7 +9,7 @@ export type BadgeProps = {
 export function Badge({ type, children }: BadgeProps) {
     return (
         <span className="badge">
-            {type === "hashtag" && <Icon type="untitledui" name="Hash01" size="sm" inline={true} className="text-slate-400" />}
+            {type === "hashtag" && <Icon library="untitledui" name="Hash01" size="sm" inline={true} className="text-slate-400" />}
             {children}
         </span>
     );

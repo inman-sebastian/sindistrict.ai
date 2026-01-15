@@ -6,6 +6,10 @@
     padding: 0;
 }
 
+:root {
+    interpolate-size: allow-keywords;
+}
+
 :where(html) {
     color-scheme: light dark;
     hanging-punctuation: first allow-end last;

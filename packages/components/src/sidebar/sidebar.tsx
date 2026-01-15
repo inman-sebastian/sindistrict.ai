@@ -1,5 +1,6 @@
 import type { SidebarItemProps } from "../sidebar-item";
 import { useLocalStorage } from "@packages/hooks";
+import { cn } from "@packages/utils";
 import "./sidebar.css";
 
 export type SidebarProps = {
@@ -33,12 +34,13 @@ export function SidebarHeader({ children }: { children: React.ReactNode }) {
 
 export type SidebarItemsProps = {
     title?: string;
+    className?: string;
     children: React.ReactNode;
 }
 
-export function SidebarItems({ title, children }: SidebarItemsProps) {
+export function SidebarItems({ title, className, children }: SidebarItemsProps) {
     return (
-        <nav className="sidebar-items">
+        <nav className={cn("sidebar-items", className)}>
             {title && <span className="sidebar-items-title">{title}</span>}
             <ul className="sidebar-items-list">
                 {children}

@@ -25,6 +25,11 @@
         "@services/clerk": "workspace:*"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^7.1.0",
+        "@fortawesome/free-brands-svg-icons": "^7.1.0",
+        "@fortawesome/free-regular-svg-icons": " ^7.1.0",
+        "@fortawesome/free-solid-svg-icons": "^7.1.0",
+        "@fortawesome/react-fontawesome": "^3.1.1",
         "@packages/utils": "workspace:*",
         "@untitledui/icons": "^0.0.19",
         "lucide-react": "^0.562.0"
@@ -33,6 +38,7 @@
         "@packages/config": "workspace:*",
         "@packages/env": "workspace:*",
         "@packages/hooks": "workspace:*",
+        "@packages/types": "workspace:*",
         "@services/supabase": "workspace:*",
         "@types/react": "^19.2.3",
         "@types/react-dom": "^19.2.3",

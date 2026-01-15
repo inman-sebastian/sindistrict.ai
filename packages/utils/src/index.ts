@@ -4,3 +4,7 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
+
+export function toKebabCase(str: string) {
+    return str.replace(/([A-Z])/g, "-$1").toLowerCase().replace(/^-/, "");
+}

@@ -1,0 +1,1 @@
+declare type RemovePrefix<T extends string, Prefix extends string> = T extends `${Prefix}${infer P}` ? P : T;

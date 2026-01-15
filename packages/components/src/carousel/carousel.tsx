@@ -86,12 +86,12 @@ export function Carousel({ children, ...props }: CarouselProps) {
             <div className="carousel-controls">
                 <div className="carousel-control carousel-control-prev">
                     <button aria-controls={`${uniqueId}-slides`} aria-label="Previous slide" onClick={handlePrev}>
-                        <Icon type="untitledui" name="ChevronLeft" />
+                        <Icon library="untitledui" name="ChevronLeft" />
                     </button>
                 </div>
                 <div className="carousel-control carousel-control-next">
                     <button aria-controls={`${uniqueId}-slides`} aria-label="Next slide" onClick={handleNext}>
-                        <Icon type="untitledui" name="ChevronRight" />
+                        <Icon library="untitledui" name="ChevronRight" />
                     </button>
                 </div>
                 <div className="carousel-control carousel-control-indicators">

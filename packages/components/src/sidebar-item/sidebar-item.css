@@ -2,26 +2,37 @@
     padding-block: --spacing(0.5);
     user-select: none;
 
-    &:is(details) {
-        appearance: none;
+    &:is(.sidebar-item-nested) {
+        display: flex;
+        flex-direction: column;
 
-        & summary {
-            &::before {
-                content: "";
-                display: none;
-            }
-
-            & .sidebar-item-indicator {
-                height: --spacing(4);
-                width: --spacing(4);
-                margin-left: --spacing(3);
-                flex-shrink: 0;
-                stroke-width: 2.5px;
-            }
+        & .sidebar-item-indicator {
+            height: --spacing(4);
+            width: --spacing(4);
+            margin-left: --spacing(3);
+            flex-shrink: 0;
+            stroke-width: 2.5px;
         }
 
-        &[open] summary .sidebar-item-indicator {
-            scale: -1;
+        & .sidebar-item-children-container {
+            content-visibility: hidden;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out, content-visibility 0.2s allow-discrete, opacity 0.2s ease-out;
+            will-change: max-height, content-visibility, opacity;
+        }
+
+        &.sidebar-item-open {
+            & .sidebar-item-indicator {
+                scale: -1;
+            }
+
+            & .sidebar-item-children-container {
+                content-visibility: visible;
+                max-height: max-content;
+                opacity: 1;
+            }
         }
     }
 
@@ -40,7 +51,9 @@
         padding-block: --spacing(2);
         padding-inline: --spacing(2.5);
         text-decoration: none;
+        transition: background-color 0.2s ease-out;
         width: 100%;
+        will-change: background-color;
 
         & .avatar {
             --avatar-size: --spacing(8);
@@ -55,8 +68,7 @@
             margin-left: --spacing(2.5);
         }
 
-        &:not(.active):hover,
-        &:not(.active):focus {
+        &:not(.active):hover {
             background-color: var(--color-slate-800);
         }
 
@@ -73,7 +85,7 @@
         line-height: 1;
 
         & .sidebar-item-title {
-            color: var(--color-slate-100);
+            color: var(--color-slate-50);
             font-size: --spacing(3.5);
             font-weight: 600;
         }
