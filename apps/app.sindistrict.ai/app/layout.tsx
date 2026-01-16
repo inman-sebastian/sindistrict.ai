@@ -4,6 +4,7 @@ import { ClerkProvider } from "@services/clerk";
 import { dark } from "@services/clerk/themes";
 import { Header, Static, ScrollArea } from "@packages/components";
 import { LeftSidebar, Footer } from "@/components";
+
 import "@packages/styles";
 import "./styles.css";
 

@@ -1,23 +1,23 @@
-import { Grid, GridItem, CharacterCard, Carousel, CarouselSlide, Image, Icon, Tabs, TabsList, TabsTrigger, TabsContent, Empty, Badge, Sticky } from "@packages/components";
-import { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-    title: "Discover | SinDistrict",
-    description: "Discover the best characters and scenarios on Sindistrict.ai",
-};
+import { Grid, GridItem, CharacterCard, Carousel, CarouselSlide, Image, Icon, Tabs, TabsList, TabsTrigger, TabsContent, Empty, Badge, Sticky } from "@packages/components";
+import "./page.css";
 
 export default function Home() {
     return (
         <>
-            <Carousel id="promo-banner">
-                <CarouselSlide backgroundImage="https://images.unsplash.com/photo-1768157691814-238f75972a64?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+            <Carousel>
+                <CarouselSlide image="https://picsum.photos/1920/400?random=1">
                     <h1>Slide 01</h1>
                 </CarouselSlide>
-                <CarouselSlide backgroundImage="https://images.unsplash.com/photo-1762692496722-de2a899e3af5?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                <CarouselSlide image="https://picsum.photos/1920/400?random=2">
                     <h1>Slide 02</h1>
                 </CarouselSlide>
-                <CarouselSlide backgroundImage="https://images.unsplash.com/photo-1767321320442-b7afa2d10d44?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                <CarouselSlide image="https://picsum.photos/1920/400?random=3">
                     <h1>Slide 03</h1>
+                </CarouselSlide>
+                <CarouselSlide image="https://picsum.photos/1920/400?random=4">
+                    <h1>Slide 04</h1>
                 </CarouselSlide>
             </Carousel>
 

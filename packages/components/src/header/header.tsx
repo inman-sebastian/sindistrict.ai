@@ -30,6 +30,9 @@ export function Header({ children }: HeaderProps) {
                 {children}
                 <div style={{ display: "flex", gap: "8px" }}>
                     <Button style="ghost" variant="secondary">
+                        <Icon library="untitledui" name="Activity" size="lg" inline />
+                    </Button>
+                    <Button style="ghost" variant="secondary">
                         <Icon library="untitledui" name="Bell01" size="lg" inline />
                     </Button>
                     <Button style="ghost" variant="secondary">

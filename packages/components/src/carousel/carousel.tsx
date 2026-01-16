@@ -1,125 +1,72 @@
-import { useEffect, useState, useMemo, useRef, useCallback, type AriaAttributes } from "react";
-import { useId } from "@packages/hooks";
+import { createContext, useContext, cloneElement, useState, useMemo, isValidElement } from "react";
 import { cn } from "@packages/utils";
-import { Icon } from "../icon";
 import { Image } from "../image";
 import { Surface } from "../surface";
 import "./carousel.css";
 
-export type CarouselProps = {
-    id?: string
-    autoplay?: boolean;
-    autoplayInterval?: number;
-    children: 
-        | React.ReactElement<Omit<CarouselSlideProps, "index">> 
-        | React.ReactElement<Omit<CarouselSlideProps, "index">>[];
+const CarouselContext = createContext<{
+    currentSlideIndex: number;
+    setCurrentSlideIndex: (slideIndex: number) => void;
+}>({
+    currentSlideIndex: 0,
+    setCurrentSlideIndex: () => {}
+});
+
+export function useCarousel() {
+    return useContext(CarouselContext);
 }
 
-export function Carousel({ children, ...props }: CarouselProps) {
-    const { id, autoplay = true, autoplayInterval = 8000 } = props;
+export type CarouselProps = {
+    value?: number;
+    children: React.ReactElement<CarouselSlideProps>[];
+}
 
-    const uniqueId = id ?? useId({ prefix: "carousel" });
+export function Carousel({ value = 0, children }: CarouselProps) {
+    const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(value);
 
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isAutoplayDisabled, setIsAutoplayDisabled] = useState(false);
+    const slides = useMemo(() => {
+        return children.filter((child) => isValidElement(child) && child.type === CarouselSlide).map((slide, index) => cloneElement(slide, { key: index, index }));
+    }, [children]);
 
-    const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
-    const childrenArray = useMemo(() => Array.isArray(children) ? children : [children], [children]);
-    const totalSlides = useMemo(() => childrenArray.length, [childrenArray]);
-
-    const handlePrev = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-        setCurrentIndex((prevIndex) => {
-            const newIndex = (prevIndex - 1 + totalSlides) % totalSlides;
-            setIsAutoplayDisabled(true);
-            return newIndex;
-        });
-    }, [totalSlides]);
-
-    const handleNext = useCallback((event?: React.MouseEvent<HTMLButtonElement>) => {
-        if (event) {
-            event.preventDefault();
-            setCurrentIndex((prevIndex) => {
-                const newIndex = (prevIndex + 1) % totalSlides;
-                setIsAutoplayDisabled(true);
-                return newIndex;
-            });
-        } else {
-            // Autoplay - no manual interaction
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
-        }
-    }, [totalSlides]);
-
-    const handleIndicatorClick = useCallback((index: number, event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-        setCurrentIndex(index);
-        setIsAutoplayDisabled(true);
-    }, []);
-
-    useEffect(() => {
-        // Only run autoplay if it's enabled and hasn't been manually disabled
-        if (autoplay && !isAutoplayDisabled) {
-            intervalRef.current = setInterval(() => {
-                handleNext();
-            }, autoplayInterval);
-        } else if (intervalRef.current) {
-            clearInterval(intervalRef.current);
-            intervalRef.current = null;
-        }
-
-        return () => {
-            if (intervalRef.current) {
-                clearInterval(intervalRef.current);
-                intervalRef.current = null;
-            }
-        };
-    }, [autoplay, isAutoplayDisabled, autoplayInterval, handleNext]);
+    const handleIndicatorClick = (slideIndex: number) => setCurrentSlideIndex(slideIndex);
 
     return (
-        <Surface id={uniqueId} className="carousel" aria-roledescription="carousel">
-            <div id={`${uniqueId}-slides`} className="carousel-slides" aria-live={autoplay && !isAutoplayDisabled ? "off" : "polite"}>
-                {childrenArray.map((child, index) => (
-                    <CarouselSlide key={index} index={index} {...child.props} className={index === currentIndex ? "active" : ""} aria-label={`${index + 1} of ${totalSlides}`} />
-                ))}
-            </div>
-            <div className="carousel-controls">
-                <div className="carousel-control carousel-control-prev">
-                    <button aria-controls={`${uniqueId}-slides`} aria-label="Previous slide" onClick={handlePrev}>
-                        <Icon library="untitledui" name="ChevronLeft" />
-                    </button>
+        <CarouselContext.Provider value={{ currentSlideIndex, setCurrentSlideIndex }}>
+            <Surface className="carousel" aria-roledescription="carousel">
+                <div className="carousel-slides" aria-live="polite">
+                    {slides}
                 </div>
-                <div className="carousel-control carousel-control-next">
-                    <button aria-controls={`${uniqueId}-slides`} aria-label="Next slide" onClick={handleNext}>
-                        <Icon library="untitledui" name="ChevronRight" />
-                    </button>
-                </div>
-                <div className="carousel-control carousel-control-indicators">
-                    <nav className="carousel-indicators">
-                        {childrenArray.map((child, index) => (
-                            <button key={index} className={cn("carousel-indicator", index === currentIndex ? "active" : "")} aria-controls={`${uniqueId}-slides`} aria-label={`${index + 1} of ${totalSlides}`} onClick={(event) => handleIndicatorClick(index, event)} />
-                        ))}
-                    </nav>
-                </div>
-            </div>
-        </Surface>
+                {slides.length > 1 && (
+                    <div className="carousel-controls">
+                        <div className="carousel-control carousel-control-indicators">
+                            <nav className="carousel-indicators">
+                                {slides.map((_, index) => (
+                                    <button key={index} className={cn("carousel-indicator", index === currentSlideIndex ? "active" : "")} onClick={() => handleIndicatorClick(index)} />
+                                ))}
+                            </nav>
+                        </div>
+                    </div>
+                )}
+            </Surface>
+        </CarouselContext.Provider>
     );
 }
 
 export type CarouselSlideProps = {
     index?: number;
-    backgroundImage?: string;
-    children: React.ReactNode;
+    image?: string;
     className?: string;
-} & AriaAttributes;
+    children: React.ReactNode;
+};
 
-export function CarouselSlide({ index, backgroundImage, className, children, ...props }: CarouselSlideProps) {
+export function CarouselSlide({ index, image, className, children, ...rest }: CarouselSlideProps) {
+    const { currentSlideIndex } = useCarousel();
     return (
-        <div className={cn("carousel-slide", className)} role="group" aria-roledescription="slide" {...props}>
+        <div className={cn("carousel-slide", className, currentSlideIndex === index ? "active" : "")} role="group" aria-roledescription="slide" {...rest}>
             <div className="carousel-slide-content">
                 {children}
             </div>
-            {backgroundImage && <Image className="carousel-slide-background-image" src={backgroundImage} alt={`Background image for slide ${index! + 1}`} />}
+            {image && <Image className="carousel-slide-background-image" src={image} loading={currentSlideIndex === index ? "eager" : "lazy"} />}
         </div>
     );
 }

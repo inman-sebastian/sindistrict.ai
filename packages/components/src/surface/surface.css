@@ -5,7 +5,6 @@
     corner-shape: squircle;
     display: flex;
     min-height: fit-content;
-    overflow: hidden;
     position: relative;
 
     & .surface-content {

@@ -72,14 +72,14 @@
 
         & img {
             scale: 1.01;
-            transition: scale 0.15s ease-out;
-            will-change: scale;
+            transition: opacity 0.2s ease-out, scale 0.15s ease-out, content-visibility 0.2s allow-discrete;
+            will-change: opacity, scale, content-visibility;
         }
 
         &::after {
             background-image: linear-gradient(to bottom, 
             rgba(from var(--color-slate-900) r g b / 0) 25%, 
-            var(--color-slate-900));
+            rgba(from var(--color-slate-900) r g b / 95%) 90%);
             content: "";
             inset: 0;
             position: absolute;

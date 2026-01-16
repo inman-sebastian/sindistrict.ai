@@ -16,7 +16,7 @@ export function LeftSidebar() {
                 </SidebarItems>
 
                 <SidebarItems title="Content">
-                    <SidebarItem title="Chats" href="/discussions" icon={{ library: "untitledui", name: "MessageTextSquare01", size: "lg", inline: true }} />
+                    <SidebarItem title="Chats" href="/chats" icon={{ library: "untitledui", name: "MessageTextSquare01", size: "lg", inline: true }} />
                     <SidebarItem title="Characters" href="/characters" icon={{ library: "untitledui", name: "User01", size: "lg", inline: true }} />
                     <SidebarItem title="Scenarios" href="/scenarios" icon={{ library: "untitledui", name: "Clapperboard", size: "lg", inline: true }} />
                     <SidebarItem title="Personas" href="/personas" icon={{ library: "untitledui", name: "FaceWink", size: "lg", inline: true }} />
@@ -32,11 +32,7 @@ export function LeftSidebar() {
             </div>
 
             <SidebarFooter>
-                {/* <Ad zoneids={["5829152", "5829198"]} /> */}
                 <SidebarItems>
-                    {/* <SidebarItem title="Help Center" href="/help" icon={{ type: "untitledui", name: "HelpCircle", size: "lg", inline: true }} />
-                    <SidebarItem title="Contact Us" href="/contact" icon={{ type: "untitledui", name: "Mail03", size: "lg", inline: true }} />
-                    <SidebarItem title="Affiliate Program" href="/affiliate" icon={{ type: "untitledui", name: "Trophy02", size: "lg", inline: true }} /> */}
                     <SidebarItem title={user?.username!} subtitle={user?.emailAddresses?.[0].emailAddress!} avatar={{ src: user?.imageUrl, shape: "rounded" }}>
                         <SidebarItem title="Characters" href="/characters" icon={{ library: "untitledui", name: "User01", size: "lg", inline: true }} />
                         <SidebarItem title="Scenarios" href="/scenarios" icon={{ library: "untitledui", name: "Clapperboard", size: "lg", inline: true }} />
@@ -44,11 +40,6 @@ export function LeftSidebar() {
                         <SidebarItem title="Images" href="/images" icon={{ library: "untitledui", name: "Image01", size: "lg", inline: true }} />
                     </SidebarItem>
                 </SidebarItems>
-                {/* <div className="sidebar-footer-links">
-                    <a href={`${process.env.NEXT_PUBLIC_SINDISTRICT_WEB_URL}/privacy-policy`}>Privacy Policy</a>
-                    <a href={`${process.env.NEXT_PUBLIC_SINDISTRICT_WEB_URL}/terms-of-service`}>Terms of Service</a>
-                    <a href={`${process.env.NEXT_PUBLIC_SINDISTRICT_WEB_URL}/cookie-policy`}>Cookie Policy</a>
-                </div> */}
             </SidebarFooter>
         </Sidebar>
     );

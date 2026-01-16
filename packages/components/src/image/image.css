@@ -1,27 +1,37 @@
 .image {
     max-inline-size: none;
     overflow: hidden;
-    place-content: center;
     position: relative;
 
     & img,
     & .skeleton {
         grid-area: image;
+        height: 100%;
         transition: opacity 0.2s ease-out;
+        width: 100%;
     }
 
     & img {
-        display: block;
-        height: 100%;
+        content-visibility: none;
         object-fit: cover;
-        width: 100%;
+        opacity: 0;
+        position: relative;
         scale: 1;
+        transition: opacity 0.2s ease-out, content-visibility 0.2s allow-discrete;
+        will-change: opacity, content-visibility;
         z-index: 1;
     }
 
-    &[data-loading="true"] {
+    & .skeleton {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+
+    &[data-loading="false"] {
         & img {
-            animation: fade-in 0.2s ease-out;
+            content-visibility: visible;
+            opacity: 1;
         }
     }
 }

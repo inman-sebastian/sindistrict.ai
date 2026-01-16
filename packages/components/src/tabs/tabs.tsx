@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { Surface } from "../surface";
 import "./tabs.css";
+import { cn } from "@packages/utils";
 
 const TabsContext = createContext<{
     activeTab: string;
@@ -48,17 +49,18 @@ export function TabsList({orientation = "horizontal", children }: TabsListProps)
 }
 
 export type TabsTriggerProps = {
+    align?: "left" | "right";
     value: string;
     children?: React.ReactNode;
 }
 
-export function TabsTrigger({ value, children }: TabsTriggerProps) {
+export function TabsTrigger({ align = "left", value, children }: TabsTriggerProps) {
     const { activeTab, setActiveTab } = useTabs();
     return (
         <button
         role="tab"
         id={`tabs-trigger-${value}`}
-        className="tabs-trigger"
+        className={cn("tabs-trigger", `tabs-trigger-${align}`)}
         aria-selected={activeTab === value}
         aria-controls={`tabs-content-${value}`} 
         onClick={() => setActiveTab(value)}>

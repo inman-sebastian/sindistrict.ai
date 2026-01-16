@@ -1,47 +1,46 @@
 import "./image.css";
 import { cn } from "@packages/utils";
 import { Skeleton } from "../skeleton";
-import { useEffect, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export type ImageProps = {
     src?: string;
     alt?: string;
+    loading?: "eager" | "lazy";
     className?: string;
+    onLoad?: () => void;
+    onError?: () => void;
 }
 
-function ImageElement({ src, alt, className }: ImageProps) {
-    const [isLoading, setIsLoading] = useState(true);
-    const [showSkeleton, setShowSkeleton] = useState(true);
-    const [image, setImage] = useState<HTMLImageElement | null>(null);
+function ImageElement({ src, alt = "", loading = "lazy", className, onLoad, onError }: ImageProps) {
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [shouldShowSkeleton, setShouldShowSkeleton] = useState(true);
+    const imageRef = useRef<HTMLImageElement>(null);
 
     useEffect(() => {
-        if (!src) return;
-        const img = new Image();
-        img.src = src;
-        if (img.complete) {
-            setIsLoading(false);
-            setShowSkeleton(false);
-            setImage(img);
-        } else {
-            img.onload = () => {
-                setIsLoading(false);
-                setImage(img);
-            };
-            img.onerror = () => {
-                setIsLoading(false);
-                setShowSkeleton(false);
-            };
-        }
-    }, [src]);
+        imageRef.current && imageRef.current.complete && handleLoad()
+    }, [src])
 
     useEffect(() => {
-        !isLoading && setTimeout(() => setShowSkeleton(false), 1000);
-    }, [isLoading]);
+        if (!isLoaded) return
+        const timeout = setTimeout(() => setShouldShowSkeleton(false), 1000);
+        return () => clearTimeout(timeout);
+    }, [isLoaded])
+
+    function handleLoad() {
+        setIsLoaded(true);
+        onLoad?.();
+    }
+
+    function handleError() {
+        setIsLoaded(false);
+        onError?.();
+    }
 
     return (
-        <picture className={cn("image", className)} data-loading={isLoading}>
-            <img src={src} alt={alt ?? ""} draggable="false" onDragStart={(e) => e.preventDefault()} />
-            {showSkeleton && <Skeleton />}
+        <picture className={cn("image", className)} data-loading={!isLoaded}>
+            <img ref={imageRef} src={src} alt={alt} loading={loading} draggable="false" onDragStart={(e) => e.preventDefault()} onLoad={handleLoad} onError={handleError} />
+            {shouldShowSkeleton && <Skeleton />}
         </picture>
     )
 
